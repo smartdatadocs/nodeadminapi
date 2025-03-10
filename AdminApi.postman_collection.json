@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "30ffa401-1e00-4f05-892b-eb061ed04488",
+		"name": "AdminApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42483018"
+	},
+	"item": [
+		{
+			"name": "data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Dinesh\",\r\n  \"value\": \"44\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Anil\",\r\n  \"value\": \"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "organization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"_id\": \"67ce56b2a103120ff4127e3a\",\r\n        \"name\": \"DHS\",\r\n        \"description\": \"Depart of Human Services\"\r\n    },\r\n     {\r\n        \"_id\": \"67ce56eea103120ff4127e3f\",\r\n        \"name\": \"TEST\",\r\n        \"description\": \"Test Depart \",\r\n        \"__v\": 0\r\n    },\r\n    {\r\n        \"name\": \"ABC\",\r\n        \"description\": \"ABC Depart \"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/organizations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "organization",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Anil\",\r\n  \"value\": \"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/organizations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "departments",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n   \"_id\": \"67ce3e8518aeec6bb4f12668\",\r\n    \"name\": \"FIA\",\r\n    \"description\": \"Family Inu Admin\",\r\n    \"organization\": \"DHS\"\r\n  },\r\n  {\r\n    \"name\": \"ABC\",\r\n    \"description\": \"ABC DDeprt\",\r\n    \"organization\": \"DHS\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/departments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "departments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Anil\",\r\n  \"value\": \"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/departments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "applications",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"_id\": \"67ce3eaf18aeec6bb4f1266b\",\r\n    \"name\": \"CJAMS\",\r\n    \"description\": \"Child admin\",\r\n    \"department\": \"FIA\",\r\n    \"organization\": \"DHS\"\r\n  },\r\n  {\r\n    \"name\": \"E&E\",\r\n    \"description\": \"Eligibility\",\r\n    \"department\": \"FIA\",\r\n    \"organization\": \"DHS\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/applications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "applications",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Anil\",\r\n  \"value\": \"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/applications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "repositories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"_id\": \"67ce3ed618aeec6bb4f1266e\",\r\n        \"name\": \"Default\",\r\n        \"description\": \"Default\",\r\n        \"application\": \"CJAMS\",\r\n        \"department\": \"FIA\",\r\n        \"organization\": \"DHS\"\r\n    },\r\n    {\r\n        \"name\": \"EE-Repo\",\r\n        \"description\": \"EE-Repo\",\r\n        \"application\": \"E&E\",\r\n        \"department\": \"FIA\",\r\n        \"organization\": \"DHS\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/repositories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"repositories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "repositories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Anil\",\r\n  \"value\": \"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/repositories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"repositories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveMetadata",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\"repository\":[\"Default\"],\"application\":[\"CJAMS\"],\"department\":[\"FIA\"],\"organization\":[\"DHS\"],\"_id\":\"67ce42f1abfdbf2438e949d0\",\"name\":\"FirstName\",\"description\":\"name\",\"type\":\"String\",\"mandatory\":\"true\",\"readOnly\":\"false\",\"active\":\"true\"},\r\n  {\r\n    \"name\": \"New Metadata\",\r\n    \"description\": \"New Description\",\r\n    \"type\": \"String\",\r\n    \"mandatory\": \"true\",\r\n    \"readOnly\": \"false\",\r\n    \"active\": \"true\",\r\n    \"repository\": [\"Default\"],\r\n    \"application\": [\"CJAMS\"],\r\n    \"department\": [\"FIA\"],\r\n    \"organization\": [\"DHS\"]\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/metadata/saveMetadata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"metadata",
+						"saveMetadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllMetadata",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Anil\",\r\n  \"value\": \"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/metadata/getAllMetadata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"metadata",
+						"getAllMetadata"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
