@@ -4,7 +4,7 @@ const connectDB = require('./config/db');
 const dataRoutes = require('./routes/dataRoutes');
 const metadataRoutes = require('./routes/metadataRoutes');
 const onboardRoute = require('./routes/onboard');
-
+const cors = require('cors');
 
 
 dotenv.config();
@@ -13,7 +13,7 @@ console.log('ATLAS_PRIVATE_KEY:', process.env.ATLAS_PRIVATE_KEY);
 console.log('ATLAS_PROJECT_ID:', process.env.ATLAS_PROJECT_ID);
 
 const app = express();
-
+app.use(cors());
 // Connect to MongoDB
 connectDB();
 

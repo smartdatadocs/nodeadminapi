@@ -1,19 +1,32 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const dataSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+// Define the nested schema for children
+const childSchema = new Schema({
+    key: String,
+    type: String,
+    label: String,
+    description: String,
+    data: {
+      name: String,
+      description: String,
+      level: Number
     },
-    value: {
-        type: Number,
-        required: true
+    children: [this] // Recursive schema definition for nested children
+  });
+  
+  // Define the main schema
+  const dataSchema = new Schema({
+    key: String,
+    type: String,
+    label: String,
+    description: String,
+    data: {
+      name: String,
+      description: String,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-});
+    children: [childSchema] // Use the nested schema here
+  });
 
 const Data = mongoose.model('Data', dataSchema);
 

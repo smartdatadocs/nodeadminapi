@@ -1,6 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-const DigestFetch = require('digest-fetch').default; // Import the digest-fetch module
 const router = express.Router();
 
 router.post('/onboard', async (req, res) => {
@@ -13,6 +12,9 @@ router.post('/onboard', async (req, res) => {
     const publicKey = process.env.ATLAS_PUBLIC_KEY;
     const privateKey = process.env.ATLAS_PRIVATE_KEY;
     const projectId = process.env.ATLAS_PROJECT_ID;
+
+    // Dynamically import digest-fetch
+    const { default: DigestFetch } = await import('digest-fetch');
 
     const client = new DigestFetch(publicKey, privateKey, { algorithm: 'MD5' });
 
@@ -38,7 +40,6 @@ router.post('/onboard', async (req, res) => {
             }
         );
         const responseData = await response.json();
-
 
         if (!response.ok) {
             console.error('MongoDB Atlas API Error:', responseData);

@@ -5,15 +5,24 @@ const Application = require('../models/applicationModel');
 const Repository = require('../models/repositoryModel');
 
 
-
 exports.insertData = async (req, res) => {
   try {
-    const { name, value } = req.body;
-    const newData = new Data({ name, value });
-    await newData.save();
-    res.status(201).json(newData);
+    const dataArray = [req.body]; // Directly use the request body as the array of metadata
+
+    const results = await Promise.all(dataArray.map(async (data) => {
+      if (data._id) {
+        // Update existing metadata
+        return await Data.findByIdAndUpdate(data._id, data, { new: true });
+      } else {
+        // Insert new metadata
+        const newData = new Data(data);
+        return await newData.save();
+      }
+    }));
+
+    res.status(201).json(results);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
   }
 };
 

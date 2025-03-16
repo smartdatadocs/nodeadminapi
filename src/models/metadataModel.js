@@ -4,7 +4,7 @@ const MetadataSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  description: {
+  displayName: {
     type: String,
   },
   type: {
@@ -13,22 +13,19 @@ const MetadataSchema = new mongoose.Schema({
   mandatory: {
     type: String,
   },
-  readOnly: {
-    type: String,
-  },
   active: {
-    type: String,
+    type: Boolean,
   },
   repository: {
     type: Array,
   },
-  application: {
+  applications: {
     type: Array,
   },
-  department: {
+  departments: {
     type: Array,
   },
-  organization: {
+  organizations: {
     type: Array,
   },
 });
