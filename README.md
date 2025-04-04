@@ -23,8 +23,8 @@ NodeAdminAPI is a simple Node.js application that connects to a MongoDB cluster 
 
 3.Deployment Steps:
    ```
-  1. npm install
-  2. npm start
+   1. npm install
+   2. pm2 start ecosystem.config.js
    ```
    
 
