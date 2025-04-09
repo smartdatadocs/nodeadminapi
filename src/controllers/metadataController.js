@@ -2,7 +2,7 @@ const Metadata = require('../models/metadataModel');
 
 exports.getAllMetadata = async (req, res) => {
   try {
-    const metadata = await Metadata.find();
+    const metadata = await Metadata.findAll(); // Use Sequelize's findAll() method
     res.status(200).json(metadata);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -10,22 +10,28 @@ exports.getAllMetadata = async (req, res) => {
 };
 
 exports.saveMetadata = async (req, res) => {
-    try {
-      const metadataArray = req.body; // Directly use the request body as the array of metadata
-  
-      const results = await Promise.all(metadataArray.map(async (metadata) => {
-        if (metadata._id) {
+  try {
+    const metadataArray = req.body; // Directly use the request body as the array of metadata
+
+    const results = await Promise.all(
+      metadataArray.map(async (metadata) => {
+        if (metadata.id) {
           // Update existing metadata
-          return await Metadata.findByIdAndUpdate(metadata._id, metadata, { new: true });
+          const existingMetadata = await Metadata.findByPk(metadata.id); // Find by primary key
+          if (existingMetadata) {
+            return await existingMetadata.update(metadata); // Update the record
+          } else {
+            throw new Error(`Metadata with id ${metadata.id} not found`);
+          }
         } else {
           // Insert new metadata
-          const newMetadata = new Metadata(metadata);
-          return await newMetadata.save();
+          return await Metadata.create(metadata); // Create a new record
         }
-      }));
-  
-      res.status(201).json(results);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
+      })
+    );
+
+    res.status(201).json(results);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

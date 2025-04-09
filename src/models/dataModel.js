@@ -1,33 +1,51 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { DataTypes, Model } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-// Define the nested schema for children
-const childSchema = new Schema({
-    key: String,
-    type: String,
-    label: String,
-    description: String,
-    data: {
-      name: String,
-      description: String,
-      level: Number
+// Define the Data model
+class Data extends Model {}
+Data.init(
+  {
+    key: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    children: [this] // Recursive schema definition for nested children
-  });
-  
-  // Define the main schema
-  const dataSchema = new Schema({
-    key: String,
-    type: String,
-    label: String,
-    description: String,
-    data: {
-      name: String,
-      description: String,
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    children: [childSchema] // Use the nested schema here
-  });
+    label: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    data: {
+      type: DataTypes.JSON, // Store nested data as JSON
+      allowNull: true,
+    },
+  },
+  {
+    sequelize,
+    modelName: 'Data',
+  }
+);
 
-const Data = mongoose.model('Data', dataSchema);
+// Define the self-referential relationship for children
+Data.hasMany(Data, {
+  as: 'children', // Alias for the children
+  foreignKey: 'parentId', // Foreign key in the child records
+});
+Data.belongsTo(Data, {
+  as: 'parent', // Alias for the parent
+  foreignKey: 'parentId', // Foreign key in the child records
+});
+
+// Sync the model with the database
+(async () => {
+  await sequelize.sync({ alter: true }); // Use `alter: true` to update the schema without losing data
+  console.log('Data model synced with SQLite');
+})();
 
 module.exports = Data;

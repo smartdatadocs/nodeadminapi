@@ -4,32 +4,19 @@ const Department = require('../models/departmentModel');
 const Application = require('../models/applicationModel');
 const Repository = require('../models/repositoryModel');
 
-
-exports.insertData = async (req, res) => {
+exports.getData = async (req, res) => {
   try {
-    const dataArray = [req.body]; // Directly use the request body as the array of metadata
-
-    const results = await Promise.all(dataArray.map(async (data) => {
-      if (data._id) {
-        // Update existing metadata
-        return await Data.findByIdAndUpdate(data._id, data, { new: true });
-      } else {
-        // Insert new metadata
-        const newData = new Data(data);
-        return await newData.save();
-      }
-    }));
-
-    res.status(201).json(results);
+    const data = await Data.findAll();
+    res.status(200).json(data);
   } catch (error) {
-      res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-exports.getData = async (req, res) => {
+exports.insertData = async (req, res) => {
   try {
-    const data = await Data.find();
-    res.status(200).json(data);
+    const newData = await Data.create(req.body);
+    res.status(201).json(newData);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -37,7 +24,7 @@ exports.getData = async (req, res) => {
 
 exports.getAllOrganizations = async (req, res) => {
   try {
-    const organizations = await Organization.find();
+    const organizations = await Data.findAll({ where: { type: 'org' } });
     res.status(200).json(organizations);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -46,20 +33,8 @@ exports.getAllOrganizations = async (req, res) => {
 
 exports.saveOrganization = async (req, res) => {
   try {
-    const organizations = req.body; // Directly use the request body as the array of organizations
-
-    const results = await Promise.all(organizations.map(async (org) => {
-      if (org._id) {
-        // Update existing organization
-        return await Organization.findByIdAndUpdate(org._id, org, { new: true });
-      } else {
-        // Insert new organization
-        const newOrganization = new Organization(org);
-        return await newOrganization.save();
-      }
-    }));
-
-    res.status(201).json(results);
+    const newOrganization = await Data.create(req.body);
+    res.status(201).json(newOrganization);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

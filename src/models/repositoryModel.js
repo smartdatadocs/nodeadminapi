@@ -1,26 +1,42 @@
-const mongoose = require('mongoose');
+const { DataTypes, Model } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const RepositorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  application: {
-    type: String,
-    required: true,
-  },
-  department: {
-    type: String,
-    required: true,
-  },
-  organization: {
-    type: String,
-    required: true,
-  },
-});
+// Define the Repository model
+class Repository extends Model {}
 
-module.exports = mongoose.model('Repository', RepositorySchema);
+Repository.init(
+  {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false, // Equivalent to `required: true` in Mongoose
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false, // Equivalent to `required: true` in Mongoose
+    },
+    application: {
+      type: DataTypes.STRING,
+      allowNull: false, // Equivalent to `required: true` in Mongoose
+    },
+    department: {
+      type: DataTypes.STRING,
+      allowNull: false, // Equivalent to `required: true` in Mongoose
+    },
+    organization: {
+      type: DataTypes.STRING,
+      allowNull: false, // Equivalent to `required: true` in Mongoose
+    },
+  },
+  {
+    sequelize,
+    modelName: 'Repository', // Name of the model
+  }
+);
+
+// Sync the model with the database
+(async () => {
+  await sequelize.sync({ alter: true }); // Use `alter: true` to update the schema without losing data
+  console.log('Repository model synced with SQLite');
+})();
+
+module.exports = Repository;
